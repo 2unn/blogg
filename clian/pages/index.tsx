@@ -7,17 +7,17 @@ import CardList from "../component/Card";
 import { apolloClient } from "../lib/apolloClient";
 import { getBlogs } from "../lib/queries";
 
-interface author {
+interface IAuthor {
   id: String;
   name: String;
 }
 
-export interface IHome {
+interface IHome {
   data: Array<{
     id: String;
     title: String;
     description: String;
-    author: author;
+    author: IAuthor;
   }>;
 }
 
@@ -28,8 +28,6 @@ const Home: React.FC<IHome> = ({ data }) => {
     </Layout>
   );
 };
-
-export default Home;
 
 export async function getServerSideProps() {
   const { data } = await apolloClient.query({
@@ -42,3 +40,6 @@ export async function getServerSideProps() {
     },
   };
 }
+
+export default Home;
+export type { IHome };

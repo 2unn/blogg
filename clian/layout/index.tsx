@@ -11,7 +11,7 @@ interface ILayOut {
 const Layout: React.FC<ILayOut> = ({ children }) => {
   return (
     <Fragment>
-      <Navbar expand="xxl" bg="dark" variant="dark">
+      <Navbar expand="xxl" bg="primary" variant="dark">
         <Container>
           <Link href="/" passHref>
             <Navbar.Brand>BlogVi</Navbar.Brand>

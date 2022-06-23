@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/CardImage.module.css";
 
 interface ICardImage {
@@ -8,8 +9,36 @@ interface ICardImage {
 }
 
 const CardImage: React.FC<ICardImage> = ({ src, title, text }) => {
+  const textEl = useRef<HTMLDivElement>(null);
+  const overlay = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (textEl.current && overlay.current) {
+      console.log(overlay.current.offsetHeight);
+      overlay.current.style.transform = `translateY(${textEl.current.offsetHeight}px)`;
+    }
+  }, []);
+
+  const handleOnMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (textEl.current && overlay.current) {
+      console.log(overlay.current.offsetHeight);
+      overlay.current.style.transform = `translateY( 0)`;
+    }
+  };
+
+  const handleOnMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (textEl.current && overlay.current) {
+      console.log(overlay.current.offsetHeight);
+      overlay.current.style.transform = `translateY(${textEl.current.offsetHeight}px)`;
+    }
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <div
+      onMouseOver={handleOnMouseOver}
+      onMouseLeave={handleOnMouseLeave}
+      className={styles.wrapper}
+    >
       <a className={styles.link}>
         <Image
           className={styles.image}
@@ -19,9 +48,11 @@ const CardImage: React.FC<ICardImage> = ({ src, title, text }) => {
           width="387"
         />
       </a>
-      <div className={styles.overlay}>
+      <div ref={overlay} className={styles.overlay}>
         <div className={styles.title}>{title}</div>
-        <div className={styles.text}>{text}</div>
+        <div ref={textEl} className={styles.text}>
+          {text}
+        </div>
       </div>
     </div>
   );

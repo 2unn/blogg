@@ -31,8 +31,8 @@ const ShowCase = () => {
           />
           <CardImage
             src="/HeroAcademy.jpg"
-            title="Hero fighting academy"
-            text="Lorem ipsum amet - nullam arcu tempus lorem ipsum dolor amet nulla"
+            title="Hero fighting academy "
+            text="Lorem ipsum amet Lorem ipsum amet - nullam arcu tempus lorem ipsum dolor amet nulla arcu tempus lorem ipsum dolor amet nulla"
           />
           <CardImage
             src="/BookCover.jpg"
